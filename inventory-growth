@@ -1,0 +1,57 @@
+[automationhub]
+10.148.0.4 ansible_user=aap
+
+# This section is for your Event-Driven Ansible controller hosts
+# -----------------------------------------------------
+[automationeda]
+10.148.0.4 ansible_user=aap
+
+# This section is for the Ansible Automation Platform database
+# -----------------------------------------------------
+[database]
+10.148.0.4 ansible_user=aap
+
+[all:vars]
+# Ansible
+ansible_connection=local
+
+# Common variables
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#general-variables
+# -----------------------------------------------------
+postgresql_admin_username=postgres
+postgresql_admin_password=<password>
+
+registry_username=<redhat registry username>
+registry_password=<redhat registry password>
+
+redis_mode=standalone
+
+# Platform gateway
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#platform-gateway-variables
+# -----------------------------------------------------
+gateway_admin_password=<password>
+gateway_pg_host=10.148.0.4
+gateway_pg_password=<password>
+
+# Automation controller
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#controller-variables
+# -----------------------------------------------------
+controller_admin_password=<password>
+controller_pg_host=10.148.0.4
+controller_pg_password=<password>
+controller_percent_memory_capacity=0.5
+
+# Automation hub
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#hub-variables
+# -----------------------------------------------------
+hub_admin_password=<password>
+hub_pg_host=10.148.0.4
+hub_pg_password=<password>
+hub_seed_collections=false
+
+# Event-Driven Ansible controller
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#event-driven-ansible-variables
+# -----------------------------------------------------
+eda_admin_password=<password>
+eda_pg_host=10.148.0.4
+eda_pg_password=<password>
