@@ -12,7 +12,7 @@ This project demonstrates the setup of **Red Hat Ansible Automation Platform (AA
 .
 ├── prometheus.yml           # Prometheus scrape configuration
 ├── inventory-growth         # Ansible inventory or playbook file (modify as needed)
-├── AAP_Monitoring_Presentation.pdf  # Final demo presentation (implementation summary)
+├── Technical Assignment.pptx  # Final demo presentation (implementation summary)
 └── README.md                # This file
 ```
 ## Step-by-Step Execution Guide
