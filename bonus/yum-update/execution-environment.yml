@@ -1,0 +1,8 @@
+version: 1
+build_arg_defaults:
+  EE_BASE_IMAGE: 'registry.redhat.io/ansible-automation-platform-25/ee-supported-rhel9:latest'
+  EE_BUILDER_IMAGE: 'registry.redhat.io/ansible-automation-platform-25/ansible-builder-rhel9:latest'
+
+additional_build_steps:
+  prepend:
+    - RUN microdnf install -y python3-dnf && microdnf clean all
