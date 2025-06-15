@@ -1,0 +1,14 @@
+# yum_update.yml
+- name: Run yum update on AAP host
+  hosts: localhost
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/libexec/platform-python
+  tasks:
+    - name: Print Python interpreter
+      debug:
+       msg: "{{ ansible_python_interpreter }}"
+    - name: Perform yum update
+      yum:
+        name: '*'
+        state: latest
