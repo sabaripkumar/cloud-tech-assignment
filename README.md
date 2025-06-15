@@ -10,6 +10,7 @@ This project demonstrates the setup of **Red Hat Ansible Automation Platform (AA
 
 ```bash
 .
+├── bonus                    # Folder containing bonus activities
 ├── prometheus.yml           # Prometheus scrape configuration
 ├── inventory-growth         # Ansible inventory or playbook file (modify as needed)
 ├── Technical Assignment.pptx  # Final demo presentation (implementation summary)
@@ -66,4 +67,31 @@ This project demonstrates the setup of **Red Hat Ansible Automation Platform (AA
      
 8. **Create Grafana Dashboard**
    - Log into Grafana and create new dashboard using template ID 1860 sourced from grafana.com
-     
+
+## 👌Bonus Activities
+## Step-by-Step Execution Guide for Bonus Activities
+1. **Create an Ansible Playbook that runs “yum update” on the VM hosting the AAP**
+    - Create a custom Execution Environment in AAP using the definition file execution-environment.yml in bonus/yum-update folder
+    - Run this command in the folder containing the yml file
+      ``` bash
+       ansible-builder build -t ee-yum-updater
+      ```
+    - Use the newly created container image as the source for a custom Execution Environment(EE) that needs to be created in AAP UI
+    - Create a Project and Job Template in AAP based on this custom EE
+    - yum_update.yml given in bonus/yum-update folder will be the file that will be configured as the playbook for this Job Template 
+    - The Project should refer to the folder containing yum_update.yml
+
+2. **Integrate Grafana and Ansible**
+   - Install Pushgateway by running it as a container
+     ``` bash
+     podman run -d --network monitoring --name=pushgateway -p 9091:9091 prom/pushgateway
+     ```
+   - The prometheus job config file(prometheus.yml) given in this repo already takes care of the scraping of pushgateway metrics
+   - Run hello_world.yml given in bonus/grafana-ansible folder
+     ``` bash
+       ansible-playbook hello_world.yml -i localhost --become
+     ```
+   - This will create a pushgateway metric entry which can be charted in grafana using promql
+     ``` bash
+       ansible_playbook_success{exported_job="ansible_hello"}
+     ```
